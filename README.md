@@ -22,7 +22,9 @@ presentation https://docs.google.com/presentation/d/1oinLmplCEw_zNcolTltn1gSCX6e
    ```jsx
    import {Route} from "react-router-dom";
    ...
-   <Route path="/mylist" component={MyList}/>
+   <Route path="/mylist">
+      <MyList/>
+   </Route>
    ```
 
 4. Change the link in the navbar to a `Link` then to a `NavLink`
@@ -68,8 +70,12 @@ presentation https://docs.google.com/presentation/d/1oinLmplCEw_zNcolTltn1gSCX6e
    import { Route, Switch } from "react-router-dom";
    ...
    <Switch>
-     <Route path="/mylist" component={MyList} />
-     <Route path="/" render={props => <MoviesList movies={movies} />} />
+     <Route path="/mylist">
+      <MyList/>
+     </Route>
+     <Route path="/">
+      <MoviesList movies={movies} />
+     </Route>
    </Switch>;
    ```
 
@@ -98,9 +104,15 @@ presentation https://docs.google.com/presentation/d/1oinLmplCEw_zNcolTltn1gSCX6e
 
    ```jsx
    <Switch>
-     <Route path="/mylist" component={MyList} />
-     <Route path="/movies/:movieId" render={MovieDetails} />
-     <Route path="/" render={props => <MoviesList movies={movies} />} />
+     <Route path="/mylist">
+       <MyList />
+     </Route>
+     <Route path="/movies/:movieId">
+       <MovieDetails />
+     </Route>
+     <Route path="/">
+       <MoviesList movies={movies} />
+     </Route>
    </Switch>
    ```
 
@@ -109,10 +121,11 @@ presentation https://docs.google.com/presentation/d/1oinLmplCEw_zNcolTltn1gSCX6e
    `MovieDetail.js`
 
    ```jsx
+   import {useParams} from 'react-router-dom'
    ...
-   function MovieDetail(props)
+   function MovieDetail()
    ...
-   const movieId = props.match.params.movieId;
+   const {movieId} = useParams();
    const movie = movies.find(movie=> movie.id === +movieId)
    ```
 
@@ -125,10 +138,18 @@ presentation https://docs.google.com/presentation/d/1oinLmplCEw_zNcolTltn1gSCX6e
     ...
 
     <Switch>
-        <Route path="/mylist" component={MyList}/>
-        <Route path="/movies/:movieId" render={props => <MovieDetails {...props}/>} />
-        <Route path="/not-found" render={props => <h1>Not found</h1>} />
-        <Route path="/" render={props => <MoviesList movies={data} />} />
-        <Redirect to="/not-found" />
+         <Route path="/mylist">
+            <MyList />
+         </Route>
+         <Route path="/movies/:movieId">
+            <MovieDetails />
+         </Route>
+         <Route path="/not-found">
+            <h1>Not found</h1>
+         </Route>
+         <Route path="/">
+            <MoviesList movies={movies} />
+         </Route>
+         <Redirect to="/not-found" />
     </Switch>
     ```
