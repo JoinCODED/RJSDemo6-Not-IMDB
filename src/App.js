@@ -15,13 +15,19 @@ function App() {
     <div className="bg-light">
       <Navbar />
       <Switch>
-        <Route path="/movies/:movieID" component={MovieDetail} />
-        <Route path="/mylist" component={MyList} />
-        <Route
-          path="/"
-          render={props => <MovieList {...props} movies={movies} />}
-        />
-        <Redirect to="/" />
+        <Route path="/mylist">
+          <MyList />
+        </Route>
+        <Route path="/movies/:movieId">
+          <MovieDetail />
+        </Route>
+        <Route path="/not-found">
+          <h1>Not found</h1>
+        </Route>
+        <Route path="/">
+          <MovieList movies={movies} />
+        </Route>
+        <Redirect to="/not-found" />
       </Switch>
     </div>
   );

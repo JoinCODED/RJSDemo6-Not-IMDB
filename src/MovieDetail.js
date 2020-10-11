@@ -1,11 +1,12 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 // Data
 import movies from "./data";
 
-const MovieDetail = props => {
-  const movieID = props.match.params.movieID;
-  const movie = movies.find(movie => movie.id === +movieID);
+const MovieDetail = () => {
+  const { movieId } = useParams();
+  const movie = movies.find((movie) => movie.id === +movieId);
   return (
     <div className="col-6 mx-auto mt-5 pb-5">
       <div className="card ">
