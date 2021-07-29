@@ -1,15 +1,15 @@
-import React from "react";
+import { Link } from "react-router-dom";
+import { Logo, NavItem } from "./styles";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-dark">
-      <a href="#" className="navbar-brand">
+      <Logo to="/" className="navbar-brand">
         Not IMDB
-      </a>
+      </Logo>
+
       <div className="navbar">
-        <a href="#" className="nav-item nav-link text-light">
-          My List
-        </a>
+        <NavItem to="/movies">Movies</NavItem>
       </div>
     </nav>
   );

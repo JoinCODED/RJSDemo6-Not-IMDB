@@ -1,10 +1,11 @@
-import React from "react";
+import { Redirect, useParams } from "react-router-dom";
 
-// Data
-import movies from "./data";
+const MovieDetail = (props) => {
+  const movieSlug = useParams().movieSlug;
+  const movie = props.movies.find((movie) => movie.slug === movieSlug);
 
-const MovieDetail = () => {
-  const movie = movies[0];
+  // if (!movie) return <Redirect to="/" />;
+
   return (
     <div className="col-6 mx-auto mt-5 pb-5">
       <div className="card ">

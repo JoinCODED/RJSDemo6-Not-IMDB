@@ -1,16 +1,18 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
-const MovieCard = props => {
+const MovieCard = (props) => {
   const movie = props.movie;
   return (
     <div className="col-lg-2 col-md-6 col-12">
       <div className="card m-3">
-        <img className="card-img-top" src={movie.image} alt={movie.title} />
+        <Link to={`/movies/${movie.slug}`}>
+          <img className="card-img-top" src={movie.image} alt={movie.title} />
+        </Link>
         <div className="card-body">
           <h5 className="card-title">{movie.name}</h5>
-          <a href={`/movies/${movie.id}`} className="btn btn-outline-info">
+          <Link to={`/movies/${movie.slug}`} className="btn btn-outline-info">
             More Details
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
-import React from "react";
 import "./App.css";
+import { Route, Switch } from "react-router";
 
 // Data
 import movies from "./data";
@@ -14,7 +14,18 @@ function App() {
   return (
     <div className="bg-light">
       <Navbar />
-      <MovieDetail />
+      <Switch>
+        <Route path="/movies/:movieSlug">
+          <MovieDetail movies={movies} />
+        </Route>
+        <Route path="/movies">
+          <MovieList movies={movies} />
+        </Route>
+        <Route path="/">
+          <MyList />
+        </Route>
+      </Switch>
+      {/* <MovieDetail /> */}
     </div>
   );
 }
